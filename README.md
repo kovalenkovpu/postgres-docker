@@ -4,7 +4,8 @@
 
 ### Prerequisites
 
-Docker is installed on your computer
+- Docker is installed on your computer
+- Copy the content of `.env.example` to the `.env` file
 
 ### Run docker service locally, then run the compose
 
