@@ -9,7 +9,7 @@
 
 ### Run docker service locally, then run the compose
 
-`docker compose up`
+> `docker compose up`
 
 You shall see docker containers pulling 2 images: `pgadmin` and `postgres` respectively. `pgadmin` is not necessary, but just in case you prefer to work with databases in a visual manner
 
@@ -34,13 +34,50 @@ Then, that's how the successful start of the containers looks like:
 
 Now you can find your server in the `pgadmin` Object Explorer
 
-### Connect to database within Docker
+### Connect to Postgres within Docker
 
 In a terminal, type:
-`docker exec -it <CONTAINER_NAME | CONTAINER_ID> psql -U <POSTGRES_USER> <POSTGRES_DB>`
+
+> `docker exec -it <CONTAINER_NAME | CONTAINER_ID> psql -U <POSTGRES_USER> <POSTGRES_DB>`
 
 - `CONTAINER_NAME` as specified in your `compose.yaml` file (`services.postgres.container_name`), or
 - `CONTAINER_ID` is obtained using the command: `docker ps`
+
+### Connect to your DB within Docker Postgres
+
+[Simple an clear tutorial for psql commands](https://www.tutorialspoint.com/postgresql/index.htm)
+
+To see all available DBs:
+
+> `\l`
+
+Select your DB (its name is specified in `.env` file under the name `POSTGRES_DB`):
+
+> `\c <POSTGRES_DB>`
+
+List all tables:
+
+> `\d`
+
+Create temporary table:
+
+```
+CREATE TABLE COMPANY(
+   ID INT PRIMARY KEY     NOT NULL,
+   NAME           TEXT    NOT NULL,
+   AGE            INT     NOT NULL,
+   ADDRESS        CHAR(50),
+   SALARY         REAL
+);
+```
+
+Drop the table:
+
+> `DROP TABLE COMPANY;`
+
+To quit:
+
+> `\q`
 
 ### To remove volumes (remove all DB data)
 
